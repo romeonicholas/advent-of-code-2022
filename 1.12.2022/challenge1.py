@@ -2,7 +2,7 @@
 #Goal: Find the Elf carrying the most Calories. How many total Calories is that Elf carrying?
 #Input: Integers represent the calories for each meal, meals carried by an elf are separated by newlines, and the elves are separated by a blank line
 
-challenge_input = open("input1.txt", "r")
+challenge_input = open("input.txt", "r")
 data = challenge_input.read().splitlines()
 
 greatest_calorie_count = 0

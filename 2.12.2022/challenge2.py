@@ -45,7 +45,7 @@ REQUIRED_MOVES = {
 total_score = 0
 
 for game in data:
-    opponent_move = MOVES[game[:1]]
+    opponent_move = MOVES[game[0]]
     outcome = OUTCOMES[game[2]]
     player_move = REQUIRED_MOVES[outcome][opponent_move]
 
