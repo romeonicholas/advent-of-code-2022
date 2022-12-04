@@ -7,10 +7,10 @@ data = challenge_input.read().splitlines()
 
 count_of_overlapping_ranges = 0
 
-for pairs in data:
-    pair = pairs.split(",")
-    range_1 = pair[0]
-    range_2 = pair[1]
+for range_pairs in data:
+    ranges = range_pairs.split(",")
+    range_1 = ranges[0]
+    range_2 = ranges[1]
 
     boundaries_1 = range_1.split("-")
     lower_boundary_1 = int(boundaries_1[0])
