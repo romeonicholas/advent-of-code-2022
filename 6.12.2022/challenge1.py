@@ -21,4 +21,4 @@ while slice_start < len(data) - 4:
 
     slice_start += 1
 
-print(slice_start + 3 + 1) #list is 0-inexed, but answer needs to be 1-indexed
+print(slice_start + 4)
