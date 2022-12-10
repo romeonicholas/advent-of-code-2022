@@ -3,17 +3,17 @@
 # the value being modified throughout, and starts at 1. The noop command
 # takes a single cycle, and does not impact the value of x. The addx command
 # takes two cycles, and at the END of the second cycle adds its value to x.
-# Goal: If signal strength is represented by cycle number times the value of
-# x DURING that cycle (not the end of it), find the summed cycle strength
-# of cycles 20, 60, 100, 140, 180, and 220
+# Goal: Every cycle represents a draw call for that pixel position on a
+# 40 wide by 6 high display, and will light up that pixel if x is within 1 of
+# that cycle's pixel DURING the cycle. Draw the result of the input on the display.
+
 
 challenge_input = open("input.txt", "r")
 instructions = challenge_input.read().splitlines()
 
 cycle = 1
 x = 1
-signal_strengths = []
-
+display_line = ""
 
 for instruction in instructions:
     command_and_value = instruction.split(" ")
@@ -22,21 +22,29 @@ for instruction in instructions:
     if len(command_and_value) == 2:
         value = int(command_and_value[1])
     cycle_duration = 0
-
-
+    
     if command == "noop":
         cycle_duration = 1
     elif command == "addx":
         cycle_duration = 2
 
     while cycle_duration > 0:
-        signal_strengths.append(cycle * x)
+        if len(display_line) > 39:
+            print(display_line)
+            display_line = ""
+            cycle -= 40
+
+        if cycle == x or cycle == x+1 or cycle == x+2:
+            display_line += "#"
+        else:
+            display_line += "."
+
         if command == "addx":
             if cycle_duration == 1:
                 x += value
+        
 
         cycle_duration -= 1
         cycle += 1
 
-sum_of_signal_strengths = signal_strengths[19] + signal_strengths[59] + signal_strengths[99] + signal_strengths[139] + signal_strengths[179] + signal_strengths[219]
-print(sum_of_signal_strengths)
+print(display_line)
